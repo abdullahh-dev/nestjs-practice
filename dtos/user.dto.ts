@@ -1,7 +1,8 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { IsNumber, IsString } from 'class-validator';
 
-export class User {
+/* User DTO */
+export class UserDto {
   @IsNumber()
   id: number;
 
@@ -12,4 +13,4 @@ export class User {
   role: 'admin' | 'user';
 }
 
-export class UpdateUser extends PartialType(User) {}
+export class UpdateUserDto extends PartialType(UserDto) {}

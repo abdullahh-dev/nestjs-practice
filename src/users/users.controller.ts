@@ -6,8 +6,10 @@ import {
   ParseIntPipe,
   Delete,
   Patch,
+  Body,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { UpdateUserDto } from 'dtos/user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -32,7 +34,11 @@ export class UsersController {
     return this.userService.deleteUser(id);
   }
   @Patch(':id')
-  updateUser(@Param('id', ParseIntPipe) id: number) {
-    // return this.userService.updateUser(id);
+  updateUser(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    console.log(updateUserDto);
+    return this.userService.updateUser(id, updateUserDto);
   }
 }
