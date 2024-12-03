@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { UpdateUserDto, User } from 'dtos';
+import { UpdateUser, User } from 'dtos/user.dto';
 
 @Injectable()
 export class UsersService {
@@ -40,7 +40,7 @@ export class UsersService {
     return newUser;
   }
 
-  update(id: number, user: UpdateUserDto) {
+  updateUser(id: number, user: UpdateUser) {
     const userToUpdate = this.findUserById(id);
     const updatedUser = { ...userToUpdate, ...user };
     this.users = this.users.map((user) =>
@@ -48,8 +48,8 @@ export class UsersService {
     );
     return updatedUser;
   }
-  delete(id: number) {
-    const deletedUser = this.findUserById(id);
+    deleteUser(id: number) {
+      const deletedUser = this.findUserById(id)
     this.users = this.users.filter((user) => user.id !== id);
     return deletedUser;
   }
